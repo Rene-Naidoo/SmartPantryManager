@@ -10,11 +10,13 @@ import androidx.room.RoomDatabase;
  * The main database class. Room generates the real SQLite code for it.
  * It lists every entity (table) and exposes every DAO.
  */
-@Database(entities = {PantryItem.class}, version = 1, exportSchema = false)
+@Database(entities = {PantryItem.class, Recipe.class, RecipeIngredient.class},
+        version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    // Room implements this method for us
+    // Room implements these methods for us
     public abstract PantryItemDao pantryItemDao();
+    public abstract RecipeDao recipeDao();
 
     // Single shared instance (singleton)
     private static volatile AppDatabase INSTANCE;
@@ -28,6 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class,
                                     "smart_pantry.db")
                             .allowMainThreadQueries() // fine for a small assignment app
+                            .fallbackToDestructiveMigration() // rebuild DB when the version changes (development only)
                             .build();
                 }
             }
