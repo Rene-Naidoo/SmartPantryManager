@@ -7,10 +7,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Recipes you can make right now"
-        android:textSize="20sp"
+        android:background="@color/brand_primary"
+        android:padding="20dp"
+        android:text="Cook Right Now"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Recipes made only from what you already have"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,7 +30,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_recipes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp" />
 
         <TextView
             android:id="@+id/text_no_match"
@@ -30,6 +42,7 @@
             android:gravity="center"
             android:padding="24dp"
             android:text="No recipes match your pantry yet - add more ingredients"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             android:visibility="gone" />
     </FrameLayout>
