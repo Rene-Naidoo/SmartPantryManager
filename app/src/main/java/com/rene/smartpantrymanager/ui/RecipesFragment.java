@@ -1,5 +1,6 @@
 package com.rene.smartpantrymanager.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -62,7 +63,8 @@ public class RecipesFragment extends Fragment implements RecipeAdapter.Listener 
 
     @Override
     public void onRecipeClick(RecipeWithIngredients recipe) {
-        // Placeholder: opens the Recipe Detail screen in the next step
-        Toast.makeText(requireContext(), recipe.recipe.name, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireContext(), RecipeDetailActivity.class);
+        intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.recipe.id);
+        startActivity(intent);
     }
 }
