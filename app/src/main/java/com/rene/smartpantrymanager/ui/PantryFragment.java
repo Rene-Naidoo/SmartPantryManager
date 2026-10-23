@@ -1,9 +1,10 @@
 package com.rene.smartpantrymanager.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -44,7 +45,7 @@ public class PantryFragment extends Fragment implements PantryAdapter.Listener {
 
         // Placeholder: replaced by the Add/Edit screen in the next step
         fab.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Add screen coming next", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(requireContext(), AddEditActivity.class)));
     }
 
     // onResume runs every time the tab becomes visible, so the list is always fresh
@@ -62,8 +63,9 @@ public class PantryFragment extends Fragment implements PantryAdapter.Listener {
 
     @Override
     public void onItemClick(PantryItem item) {
-        // Placeholder: opens the edit screen in the next step
-        Toast.makeText(requireContext(), "Edit " + item.name + " coming next", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireContext(), AddEditActivity.class);
+        intent.putExtra(AddEditActivity.EXTRA_ITEM_ID, item.id);   // pass data to the next screen
+        startActivity(intent);
     }
 
     @Override
